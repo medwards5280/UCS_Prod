@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+</head>
+<body>
+<style type="text/css">
+.form-style-9{
+    max-width: 450px;
+    background: #FAFAFA;
+    padding: 30px;
+    margin: 50px auto;
+    box-shadow: 1px 1px 25px rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    border: 6px solid #305A72;
+}
+.form-style-9 ul{
+    padding:0;
+    margin:0;
+    list-style:none;
+}
+.form-style-9 ul li{
+    display: block;
+    margin-bottom: 10px;
+    min-height: 35px;
+}
+.form-style-9 ul li  .field-style{
+    box-sizing: border-box; 
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    padding: 8px;
+    outline: none;
+    border: 1px solid #B0CFE0;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
+
+}.form-style-9 ul li  .field-style:focus{
+    box-shadow: 0 0 5px #B0CFE0;
+    border:1px solid #B0CFE0;
+}
+.form-style-9 ul li .field-split{
+    width: 49%;
+}
+.form-style-9 ul li .field-full{
+    width: 100%;
+}
+.form-style-9 ul li input.align-left{
+    float:left;
+}
+.form-style-9 ul li input.align-right{
+    float:right;
+}
+.form-style-9 ul li textarea{
+    width: 100%;
+    height: 100px;
+}
+.form-style-9 ul li input[type="button"], 
+.form-style-9 ul li input[type="submit"] {
+    -moz-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    -webkit-box-shadow: inset 0px 1px 0px 0px #3985B1;
+    box-shadow: inset 0px 1px 0px 0px #3985B1;
+    background-color: #216288;
+    border: 1px solid #17445E;
+    display: inline-block;
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 8px 18px;
+    text-decoration: none;
+    font: 12px Arial, Helvetica, sans-serif;
+}
+.form-style-9 ul li input[type="button"]:hover, 
+.form-style-9 ul li input[type="submit"]:hover {
+    background: linear-gradient(to bottom, #2D77A2 5%, #337DA8 100%);
+    background-color: #28739E;
+}
+div.hr {
+background: #305A72 no-repeat scroll center;
+margin 50px auto;
+width:100%;
+height:2px;
+}
+
+div.hr hr {
+display: none;
+}
+</style>
+<style>
+    select:option[default] {
+		color: #333;
+	}
+</style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("input[name='os']").click(function () {
+            if ($("#chkVMware").is(":checked")) {
+				$("#dvVmware").show();
+                $("#dvHyperV").hide();
+            } else if ($("#chkHyperv").is(":checked")) {
+                $("#dvVmware").hide();
+				$("#dvHyperV").show();
+            }
+        });
+    });
+</script>
+
+<form action="/configureucs" class="form-style-9" method="post">
+
+
+<ul>
+<li>
+   <input class="field-style field-full align-none" type="text" name="ipaddress" placeholder="UCS IP Address" value=""><br>
+ </li>
+<li> 
+   <input class="field-style field-full align-none" type="text" name="username"  placeholder="UCS Username" value=""><br>
+</li>
+<li> 
+  <input class="field-style field-full align-none" type="text" name="password"  placeholder="UCS Password" value=""><br>
+</li>
+<div class="hr"><hr /></div>
+<br>
+<li>	
+	<input class="field-style field-split align-left" type="text" size="30" name="siteid" placeholder="Site ID" value="">
+	<input class="field-style field-split align-right" type="text" size="30" name="domainid" placeholder="Domain ID" value="">
+</li>
+<li>	
+	<input class="field-style field-split align-left" type="text" size="30" name="dnsserver" placeholder="DNS Server 1" value="">
+    <input class="field-style field-split align-right" type="text" size="30" name="dnsserver2" placeholder="DNS Server 2" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="ntpserver" placeholder="NTP Server" value="">
+</li>
+<li>
+	<select class="field-style field-full align-none" name="timezone"><br>
+		<option value="" disabled selected hidden>Time Zone</option>
+		<option value = "America/Los_Angeles (Pacific Time)">Pacific</option>
+		<option value = "America/Denver (Mountain Time)">Mountain</option>
+		<option value = "America/Chicago (Central Time)">Central</option>
+		<option value = "America/New_York (Eastern Time)">Eastern</option>
+</li>
+<br><br>
+<li>
+	<input class="field-style field-full align-none" type="text" size="30" name="uplinkrange" placeholder="Uplink Ports, 1-2" value="">
+</li>
+<li>
+	<input class="field-style field-split align-left" type="text" size="30" name="channelA" placeholder="Port Channel Number Fabric A:" value="">
+    <input class="field-style field-split align-right" type="text" size="30" name="channelB" placeholder="Port Channel Number Fabric B:" value="">
+</li>
+<li>
+	Chassis Discovery Policy:
+	<input type="radio" name="yesno" value="Yes" checked>Yes
+	<input type="radio" name="yesno" value="No">No
+</li>
+<li>
+	<input class="field-style field-full align-none" type="text" name="OrgName" value="" placeholder="Organization Name">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="maintpolicy" placeholder="Maintenance Policy" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="bios" placeholder="Bios Policy" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="LocalBootPolicyName" placeholder="Local Boot Policy" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="SanBootPolicyName" placeholder="SAN Boot Policy" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="cimc_name" placeholder="CIMC Policy Name" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="cimc_start" placeholder="CIMC Start Addres" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="cimc_end" placeholder="CIMC End Address" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="cimc_mask"  placeholder="CIMC Subnet Mask" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="cimc_gw" placeholder="CIMC Default Gateway" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="vlanrange" placeholder="UCS VLANs" value="">
+</li>
+<li>
+	<input class="field-style field-split align-left" type="text" size="30" name="VSANA" placeholder="VSAN A Number" value="">
+    <input class="field-style field-split align-right" type="text" size="30" name="VSANB" placeholder="VSAN B Number" value="">
+</li>
+<li>
+	<input class="field-style field-split align-left" type="text" size="30" name="FCOEA" placeholder="FCOE VLAN A Number" value="">
+    <input class="field-style field-split align-right" type="text" size="30" name="FCOEB" placeholder="FCOE VLAN B Number" value="">
+</li>
+<div class="hr"><hr /></div>
+<br>
+<li>
+<input class="field-style field-full align-none" type="text" name="macpoolname" placeholder="MAC Address Pool Name" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="wwnnpoolname" placeholder="WWNN Pool Name" value="">
+</li>
+<li>
+<input class="field-style field-full align-none" type="text" name="wwpnpoolname" placeholder="WWPN Pool Name" value="">
+</li>
+
+<li>
+<input class="field-style field-full align-none" type="text" name="uuidpoolname" placeholder="UUID Pool Name" value="">
+</li>
+<div class="hr"><hr /></div>
+<br>
+<li>
+  <span>Select Operting System Type?</span>
+<label for="chkYes">
+    <input type="radio" id="chkVMware" name="os" value="ESX" />
+    VMware
+</label>
+
+<label for="chkNo">
+    <input type="radio" id="chkHyperv" name="os" value="HyperV"/>
+    HyperV
+</label>
+</li>
+<div id="dvVmware" style="display: none">
+
+  <li>
+   <input  class="field-style field-full align-none" type="text" name="TemplateType" placeholder="Service Profile Template Type (Prod, Dev, Test, DMZ)">
+  </li>
+  <li>
+   <input  class="field-style field-full align-none" type="text" name="vlanmgmt" placeholder="VLAN(s) for Management vNIC">
+  </li>
+    <li>
+   <input  class="field-style field-full align-none" type="text" name="vlanmotion" placeholder="VLAN(s) for vMotion vNIC">
+  </li>
+    <li>
+   <input  class="field-style field-full align-none" type="text" name="vlandata" placeholder="VLAN(s) for Data vNICs">
+  </li>
+</div>
+<li>
+
+<li>
+	<input type="submit" value="Configure UCS" />
+</li>
+</ul>
+</form>
+
+</div>
+</body>
+</html>
